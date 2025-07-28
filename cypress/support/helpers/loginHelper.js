@@ -1,4 +1,4 @@
-import { LoginPage } from "../../page-modules/LoginPage";
+import { LoginPage } from "../../page-modules/loginPage";
 
 export const loginHelper = {
     login: (username, password) => {

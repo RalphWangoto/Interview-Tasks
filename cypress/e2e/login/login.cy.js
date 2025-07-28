@@ -1,5 +1,5 @@
 import { loginHelper} from "../../support/helpers/loginHelper";
-import { LoginPage } from "../../page-modules/LoginPage";
+import { LoginPage } from "../../page-modules/loginPage";
 
 describe('Login Tests', () => {
     const username = Cypress.env('username');
