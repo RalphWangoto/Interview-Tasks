@@ -1,6 +1,6 @@
-Overview
+Cypress Automation Framework
 This is a scalable and modular Cypress automation framework designed for end-to-end (E2E) testing of web applications. It follows best practices by separating test specs, reusable page modules, utilities, and configurations, ensuring maintainability and efficiency.
-The framework supports UI and API testing, organizes test cases by modules and submodules, and includes custom commands, fixtures, and plugins for optimized automation.
+The framework supports UI and can also support API testing, organizes test cases by modules and submodules, and includes custom commands, fixtures, and plugins for optimized automation.
 
 --------
 Project Structure
@@ -14,13 +14,11 @@ cypress/
 |
 ├── page-modules/                  # Reusable page locators + helper functions
 │   ├── LoginPage.js               # Login page locators and methods
-│   ├── AddToCart.js               # User management page locators and methods
+│   ├── AddToCart.js               # Add To Cart Actions page locators and methods
 |
 ├── support/  
 |   ├── helpers                    # Contains Helper Functions that are reused through out.
 │   ├── commands.js                # Custom Cypress commands
-│   ├── utils.js                   # Utility functions (e.g., data generators)
-│   ├── index.js                   # Cypress support setup
 │
 ├── fixtures/                      # Test data in JSON format
 │   ├── userData.json              # Sample user data
@@ -51,10 +49,6 @@ Running Tests:
 
     npx cypress open
 
-🔹 Run API tests only:
-
-    npx cypress run --spec "cypress/e2e/**/*.api.cy.js"
-
 --------
 Configuration
 
@@ -65,8 +59,8 @@ Cypress Configuration
 Environment Variables
 
     Sensitive data or environment-specific configurations should be stored in cypress.env.json:
-
 -------
+
 Reporting
 Test execution results are automatically stored in the reports/ directory.
 To generate a detailed report, run:
@@ -89,10 +83,12 @@ Submit a Pull Request
 
 About the Author
 Built by Raphael Wangoto – Senior Quality Assurance Engineer | Cypress Guru 😎
-For inquiries, reach out via [LinkedIn](https://www.linkedin.com/in/
-raphael-wangoto-qaconsultant6416b8143) or GitLab.
-
+For inquiries, reach out via: 
+[LinkedIn](https://www.linkedin.com/in/raphael-wangoto-qaconsultant6416b8143), 
+[GitLab](https://github.com/RalphWangoto) or 
+[email](wangotoraphael@gmail.com)
 --------
+
 Future Enhancements
 
 
@@ -103,3 +99,4 @@ Future Enhancements
  Improve test data management with dynamic fixtures
 
  Set Up CI/CD pipeline
+-------
