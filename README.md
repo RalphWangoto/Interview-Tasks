@@ -84,7 +84,7 @@ Clone the repository
 Create a feature branch (git checkout -b feature-name)
 Commit your changes (git commit -m "Added feature XYZ")
 Push to your branch (git push origin feature-name)
-Submit a Pull Request 🚀
+Submit a Pull Request 
 -------
 
 About the Author
