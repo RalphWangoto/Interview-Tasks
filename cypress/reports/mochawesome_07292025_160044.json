@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-29T13:00:27.225Z",
+    "end": "2025-07-29T13:00:44.867Z",
+    "duration": 17642,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0dd46e22-b1fa-4400-8ab6-9016365b8ec9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\add-to-cart\\cart-actions.cy.js",
+      "file": "cypress\\e2e\\add-to-cart\\cart-actions.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3a8f6f03-787d-4ce1-9f13-8cf6d89e0f18",
+          "title": "Add to Cart Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should add, remove, and proceed to checkout a product to the cart",
+              "fullTitle": "Add to Cart Tests should add, remove, and proceed to checkout a product to the cart",
+              "timedOut": null,
+              "duration": 12953,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Login with valid credentials\n_loginHelper.loginHelper.login(username, password);\n// Arrays to hold product data\nconst itemNames = [];\nconst itemPrices = [];\n// Loop through the first 3 items\ncy.get(_productsPage.productsPage.inventoryItem).each(($el, index) => {\n  if (index < 3) {\n    // Get Item Name\n    cy.wrap($el).find(_productsPage.productsPage.inventoryItemName).invoke('text').then(name => {\n      itemNames.push(name.trim());\n    });\n    // Get Item Price\n    cy.wrap($el).find(_productsPage.productsPage.inventoryItemPrice).invoke('text').then(price => {\n      itemPrices.push(price.trim());\n    });\n    // Click \"Add to cart\" button\n    cy.wrap($el).find('button').contains(_productsPage.productsPage.addToCartButton).click();\n    //Assert the value of the cart badge\n    cy.get(_productsPage.productsPage.cartBadge).should('contain', (index + 1).toString());\n  }\n}).then(() => {\n  // After collecting, set aliases\n  cy.wrap(itemNames).as('itemNames');\n  cy.wrap(itemPrices).as('itemPrices');\n});\n// Proceed to the Cart\ncy.get(_productsPage.productsPage.cartBadge).click();\n// Assert the URL to ensure we are on the cart page\ncy.url().should('include', '/cart.html');\n// Assert the items in the cart\ncy.get('@itemNames').then(names => {\n  names.forEach((name, index) => {\n    cy.get(_productsPage.productsPage.cartItem).eq(index).find(_productsPage.productsPage.inventoryItemName).should('contain', name);\n  });\n});\ncy.get('@itemPrices').then(prices => {\n  prices.forEach((price, index) => {\n    cy.get(_productsPage.productsPage.cartItem).eq(index).find(_productsPage.productsPage.inventoryItemPrice).should('contain', price);\n  });\n});\n// Remove 1 of the items from the cart\ncy.get(_productsPage.productsPage.cartItem).first().find('button').contains(_productsPage.productsPage.removeButton).click();\n// Assert the cart badge is updated\ncy.get(_productsPage.productsPage.cartBadge).should('contain', '2');\n// Proceed to checkout\ncy.get(_productsPage.productsPage.checkoutButton).click();\n// Assert we are on the checkout page\ncy.url().should('include', '/checkout-step-one.html');\n// Assert fields are mandatory\ncy.get(_productsPage.productsPage.continueButton).click();\ncy.get(_productsPage.productsPage.checkoutAlert).should('be.visible');\ncy.get(_productsPage.productsPage.checkoutAlert).should('contain', 'Error: First Name is required');\n// Fill in the checkout form\ncy.get(_productsPage.productsPage.firstNameInput).type(firstName);\ncy.get(_productsPage.productsPage.lastNameInput).type(lastName);\ncy.get(_productsPage.productsPage.postalCodeInput).type(postalCode);\n// Click the continue button\ncy.get(_productsPage.productsPage.continueButton).click();\n// Assert we are on the checkout overview page\ncy.url().should('include', '/checkout-step-two.html');\n// Assert the subtotal, tax, and total labels\ncy.get(_productsPage.productsPage.subtotalLabel).should('be.visible');\ncy.get(_productsPage.productsPage.taxLabel).should('be.visible');\ncy.get(_productsPage.productsPage.totalLabel).should('be.visible');\n// Click the finish button\ncy.get(_productsPage.productsPage.finishButton).click();\n// Assert we are on the order confirmation page\ncy.url().should('include', '/checkout-complete.html');\ncy.get(_productsPage.productsPage.successMessage).should('contain', 'Thank you for your order!');",
+              "err": {},
+              "uuid": "ff24d43e-f4ba-4cf5-9e80-f7ded3eaff14",
+              "parentUUID": "3a8f6f03-787d-4ce1-9f13-8cf6d89e0f18",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ff24d43e-f4ba-4cf5-9e80-f7ded3eaff14"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 12953,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
